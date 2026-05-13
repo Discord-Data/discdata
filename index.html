@@ -1,56 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Discord Dashboard</title>
+
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
     background:#36393f;
-    color:white;
-    font-family:Arial;
+    font-family:Arial, sans-serif;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
-    margin:0;
+    min-height:100vh;
+    color:white;
 }
 
-.box{
+.card{
+    width:350px;
     background:#2f3136;
     padding:30px;
-    border-radius:10px;
-    width:300px;
+    border-radius:15px;
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.logo img{
+    width:80px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:6px;
+    font-size:14px;
 }
 
 input{
     width:100%;
-    padding:10px;
-    margin-top:10px;
-    background:#202225;
+    padding:14px;
     border:none;
+    border-radius:6px;
+    background:#1e2124;
     color:white;
+    font-size:15px;
+    outline:none;
 }
 
-button{
+input::placeholder{
+    color:#72767d;
+}
+
+.row{
+    display:flex;
+    gap:15px;
+}
+
+.row div{
+    flex:1;
+}
+
+.btn{
     width:100%;
-    padding:10px;
-    margin-top:15px;
-    background:#5865F2;
+    margin-top:25px;
+    padding:14px;
     border:none;
+    border-radius:8px;
+    background:#5865F2;
     color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#4752c4;
+}
+
+.popup{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#57F287;
+    color:black;
+    padding:15px 20px;
+    border-radius:10px;
+    font-weight:bold;
+    display:none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box">
-<h2>Discord Dashboard</h2>
-
-<input placeholder="Username">
-<input placeholder="Email">
-
-<button>Continue</button>
+<div class="popup" id="popup">
+    Success!
 </div>
+
+<div class="card">
+
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
+    </div>
+
+    <h2>Database</h2>
+
+    <label>Card Holder</label>
+    <input type="password" placeholder="Enter card holder">
+
+    <div class="row">
+
+        <div>
+            <label>Exp Date</label>
+            <input type="password" placeholder="MM/YY">
+        </div>
+
+        <div>
+            <label>CVV</label>
+            <input type="password" placeholder="***">
+        </div>
+
+    </div>
+
+    <button class="btn" onclick="showPopup()">
+        Continue
+    </button>
+
+</div>
+
+<script>
+function showPopup(){
+    const popup = document.getElementById("popup");
+
+    popup.style.display = "block";
+
+    setTimeout(function(){
+        popup.style.display = "none";
+    }, 3000);
+}
+</script>
 
 </body>
 </html>
