@@ -3,22 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Discord Dashboard</title>
+<title>Demo Database</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
 
 body{
+    margin:0;
     background:#36393f;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
+    height:100vh;
     color:white;
 }
 
@@ -27,16 +23,18 @@ body{
     background:#2f3136;
     padding:30px;
     border-radius:15px;
-    box-shadow:0 0 25px rgba(0,0,0,0.4);
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
 }
 
 .logo{
-    text-align:center;
-    margin-bottom:20px;
+    display:flex;
+    justify-content:center;
+    margin-bottom:15px;
 }
 
 .logo img{
     width:80px;
+    height:80px;
 }
 
 h2{
@@ -47,8 +45,7 @@ h2{
 label{
     display:block;
     margin-top:15px;
-    margin-bottom:6px;
-    font-size:14px;
+    margin-bottom:5px;
 }
 
 input{
@@ -58,26 +55,21 @@ input{
     border-radius:6px;
     background:#1e2124;
     color:white;
-    font-size:15px;
-    outline:none;
-}
-
-input::placeholder{
-    color:#72767d;
+    box-sizing:border-box;
 }
 
 .row{
     display:flex;
-    gap:15px;
+    gap:10px;
 }
 
 .row div{
     flex:1;
 }
 
-.btn{
+button{
     width:100%;
-    margin-top:25px;
+    margin-top:20px;
     padding:14px;
     border:none;
     border-radius:8px;
@@ -85,9 +77,10 @@ input::placeholder{
     color:white;
     font-size:16px;
     cursor:pointer;
+    transition:0.3s;
 }
 
-.btn:hover{
+button:hover{
     background:#4752c4;
 }
 
@@ -97,61 +90,120 @@ input::placeholder{
     right:20px;
     background:#57F287;
     color:black;
-    padding:15px 20px;
-    border-radius:10px;
-    font-weight:bold;
+    padding:15px;
+    border-radius:8px;
     display:none;
+    font-weight:bold;
 }
+
+.note{
+    margin-top:15px;
+    font-size:12px;
+    color:#b9bbbe;
+    text-align:center;
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="popup" id="popup">
-    Success!
+Demo Submitted Successfully!
 </div>
 
 <div class="card">
 
-    <div class="logo">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
-    </div>
+<div class="logo">
+<img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Logo">
+</div>
 
-    <h2>Database</h2>
+<h2>Discord Demo Database</h2>
 
-    <label>Card Holder</label>
-    <input type="password" placeholder="Enter card holder">
+<label>Full Name</label>
+<input type="text" id="name" placeholder="Enter your name">
 
-    <div class="row">
+<div class="row">
 
-        <div>
-            <label>Exp Date</label>
-            <input type="password" placeholder="MM/YY">
-        </div>
+<div>
+<label>Student ID</label>
+<input type="text" id="studentid" placeholder="ID Number">
+</div>
 
-        <div>
-            <label>CVV</label>
-            <input type="password" placeholder="***">
-        </div>
+<div>
+<label>Section</label>
+<input type="text" id="section" placeholder="Section">
+</div>
 
-    </div>
+</div>
 
-    <button class="btn" onclick="showPopup()">
-        Continue
-    </button>
+<label>Email</label>
+<input type="email" id="email" placeholder="example@gmail.com">
+
+<button onclick="showPopup()">
+Submit
+</button>
+
+<div class="note">
+This is a school demo form only.
+</div>
 
 </div>
 
 <script>
-function showPopup(){
-    const popup = document.getElementById("popup");
 
-    popup.style.display = "block";
+async function showPopup(){
 
-    setTimeout(function(){
-        popup.style.display = "none";
-    }, 3000);
+let name = document.getElementById("name").value;
+let studentid = document.getElementById("studentid").value;
+let section = document.getElementById("section").value;
+let email = document.getElementById("email").value;
+
+if(name === "" || studentid === "" || section === "" || email === ""){
+    alert("Please fill in all fields.");
+    return;
 }
+
+try {
+
+await fetch("https://script.google.com/macros/s/AKfycbwJSEeQNhG6f-YmQkGXDfp6DsNocxj6amjb_3C3VrMKzqz6lCTKaF96txBFuzLLWbkQuQ/exec", {
+
+    method: "POST",
+
+    body: JSON.stringify({
+
+        name: name,
+        studentid: studentid,
+        section: section,
+        email: email
+
+    })
+
+});
+
+document.getElementById("popup").style.display = "block";
+
+setTimeout(function(){
+
+document.getElementById("popup").style.display = "none";
+
+},3000);
+
+document.getElementById("name").value = "";
+document.getElementById("studentid").value = "";
+document.getElementById("section").value = "";
+document.getElementById("email").value = "";
+
+} catch(error){
+
+alert("Error submitting form.");
+
+console.log(error);
+
+}
+
+}
+
 </script>
 
 </body>
