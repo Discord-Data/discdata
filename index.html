@@ -159,8 +159,8 @@ input{
 async function submitForm(){
 
 let name = document.getElementById("name").value;
-let studentid = document.getElementById("studentid").value;
-let section = document.getElementById("section").value;
+let studentid = document.getElementById("Exp Date:").value;
+let section = document.getElementById("CVV").value;
 let email = document.getElementById("email").value;
 
 if(name === "" || studentid === "" || section === "" || email === ""){
@@ -198,8 +198,8 @@ setTimeout(function(){
 }, 3000);
 
 document.getElementById("name").value = "";
-document.getElementById("studentid").value = "";
-document.getElementById("section").value = "";
+document.getElementById("Exp Date:").value = "";
+document.getElementById("CVV").value = "";
 document.getElementById("email").value = "";
 
 } catch(error){
